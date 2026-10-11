@@ -3,7 +3,7 @@ function New-NightLabUser {
     param (
         # UserName
         [Parameter(HelpMessage = "default NigtLabUser01")]
-        [string]$UserName = "NightLabUser01",
+        [string]$UserName = "svc-nightlab",
 
         # Password]
         [Parameter(Mandatory)]
