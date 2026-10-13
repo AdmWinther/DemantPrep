@@ -22,6 +22,9 @@ function New-NightLabUser {
     else {
         write-Verbose "User $UserName does not exist. Creating user."
         New-LocalUser -Name $UserName -Password $Password
+        write-Verbose "User $UserName created successfully."
+        Enable-LocalUser -Name $UserName
+        Write-Verbose "User $UserName enabled successfully."
         write-Verbose "Adding $UserName to Administrators group"
     }
     
