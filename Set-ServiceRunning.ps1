@@ -1,6 +1,6 @@
 #Requires -RunAsAdministrator
 set-StrictMode -Version 3.0
-function Start-AService {
+function Set-ServiceRunning {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
@@ -11,7 +11,7 @@ function Start-AService {
     try {
         $theService = Get-Service -Name $ServiceName -ErrorAction stop
     } catch {
-        throw "Service '$ServiceName' not found. Please ensure that the $ServiceName  is installed."
+        throw "Service '$ServiceName' not found. Please ensure that the $ServiceName is installed."
     }
 
     Write-Verbose "$ServiceName service found: $($theService.Name)"

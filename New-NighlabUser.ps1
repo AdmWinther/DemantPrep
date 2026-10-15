@@ -25,7 +25,6 @@ function New-NightLabUser {
         write-Verbose "User $UserName created successfully."
         Enable-LocalUser -Name $UserName
         Write-Verbose "User $UserName enabled successfully."
-        write-Verbose "Adding $UserName to Administrators group"
     }
     
 }
