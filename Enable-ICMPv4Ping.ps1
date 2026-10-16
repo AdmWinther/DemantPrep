@@ -47,6 +47,7 @@ function Enable-ICMPv4Ping {
         throw "An error occurred while checking if firewall rule is enabled: $($_.Exception.Message)"
     }
     return [PSCustomObject]@{
+        Step = 'Enable-ICMPv4Ping'
         Changed = $Changed
         Message = "Firewall rule '$RuleName' is present and enabled."
     }

@@ -9,6 +9,7 @@ function New-NightLabUser {
         [Parameter(Mandatory)]
         [SecureString]$Password
     )
+    $Changed = $false
 
     write-Verbose "Controlling if the NightLab user $UserName exists"
     $UserExists = $false
@@ -17,7 +18,11 @@ function New-NightLabUser {
     If ($null -ne $UserExists) {
         $UserExists = $true
         write-Verbose "User $UserName already exists. Skipping creation."
-        return
+        return [PSCustomObject]@{
+            Step = 'New-NightLabUser'
+            Changed = $false
+            Message = 'User account exists, no new account.'
+        }
     }
     else {
         write-Verbose "User $UserName does not exist. Creating user."
@@ -25,6 +30,11 @@ function New-NightLabUser {
         write-Verbose "User $UserName created successfully."
         Enable-LocalUser -Name $UserName
         Write-Verbose "User $UserName enabled successfully."
+        return [PSCustomObject]@{
+            Step = 'New-NightLabUser'
+            Changed = $true
+            Message = 'New user accound is made.'
+        }
     }
     
 }

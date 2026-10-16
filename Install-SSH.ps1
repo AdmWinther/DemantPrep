@@ -34,6 +34,7 @@ function Install-SSH {
         {
             Write-Verbose "OpenSSH Server installation completed successfully"
             return [PSCustomObject]@{
+                Step = 'Install-SSH'
                 RestartNeeded = $ReplyOfInstallation.RestartNeeded
                 Changed = $true
                 Message = "OpenSSH Server installed successfully"
@@ -50,6 +51,7 @@ function Install-SSH {
     elseif ('Installed' -eq $sshCapability.State) {
         Write-Verbose "OpenSSH Server is already installed. No action needed."
         return [PSCustomObject]@{
+            Step = 'Install-SSH'
             RestartNeeded = $false
             Changed = $false
             Message = "OpenSSH Server is already installed."

@@ -10,26 +10,38 @@ function Set-StationFolders
     [string]$root = "C:\NightLab\"
     [string[]]$folders = 'log', 'packages', 'data'
 
+    $Changed = $false
+    $Message = ""
     foreach($subfolder in $folders)
     {
         $path = $root + $subfolder
-        write-Host "Path to make: $path"
+        Write-Verbose "Path to make: $path"
         if(!(Test-Path $path))
         {
-            write-Host "Folder $path does not exist, trying to make it"
+            Write-Verbose "Folder $path does not exist, trying to make it"
             try
             {
                 write-Host "Trying to make folder $path"
                 mkdir $path -ErrorAction Stop
+                $Changed = $true
+                $Message = "$($Message)New $($path) folder is made. "
             }
             catch
             {
-                write-Host "Making folder $path failed, $."
+                Write-Verbose "Making folder $path failed, $."
             }
         }
         else
         {
-            write-Host "Folder $path already exists"
+            Write-Verbose "Folder $path already exists"
         }
+    }
+    if($Message.Length -eq 0){
+        $Message = "No new folder."
+    }
+    return [PSCustomObject]@{
+        Step = 'Folders'
+        Changed = $Changed
+        Message = $Message
     }
 }
