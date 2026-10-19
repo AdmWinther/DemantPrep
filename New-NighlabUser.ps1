@@ -31,6 +31,7 @@ function New-NightLabUser {
         Enable-LocalUser -Name $UserName
         Write-Verbose "User $UserName enabled successfully."
         return [PSCustomObject]@{
+            RestartNeeded = $false
             Step = 'New-NightLabUser'
             Changed = $true
             Message = 'New user accound is made.'
