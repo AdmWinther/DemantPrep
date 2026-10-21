@@ -1,7 +1,4 @@
 #Requires -RunAsAdministrator
-[CmdletBinding()]
-$ErrorActionPreference = 'Stop'
-Set-StrictMode -Version 3.0
 param (
     [Parameter(HelpMessage="The name of the computer")]
     [ValidateLength(1, 15)]
@@ -12,6 +9,9 @@ param (
     [Parameter(Mandatory)]
     [SecureString]$Password
 )
+[CmdletBinding()]
+$ErrorActionPreference = 'Stop'
+Set-StrictMode -Version 3.0
 
 . $PSScriptRoot\Set-StationFolders.ps1
 . $PSScriptRoot\Enable-ICMPv4Ping.ps1
