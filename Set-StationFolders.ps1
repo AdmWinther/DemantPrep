@@ -8,7 +8,7 @@ function Set-StationFolders
     Set-StrictMode -Version Latest
 
     [string]$root = "C:\NightLab\"
-    [string[]]$folders = 'log', 'packages', 'data'
+    [string[]]$folders = 'log2', 'packages2', 'data2'
 
     $Changed = $false
     $Message = ""
@@ -40,7 +40,8 @@ function Set-StationFolders
         $Message = "No new folder."
     }
     return [PSCustomObject]@{
-        Step = 'Folders'
+        RestartNeeded = $false
+        Step = 'StationFolders'
         Changed = $Changed
         Message = $Message
     }

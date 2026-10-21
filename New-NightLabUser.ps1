@@ -6,9 +6,11 @@ function New-NightLabUser {
         [string]$UserName = "svc-nightlab",
 
         # Password]
-        [Parameter(Mandatory)]
+        [Parameter()]
         [SecureString]$Password
     )
+
+    
     $Changed = $false
     $Message = 'User account exists, no new account.'
 
@@ -22,7 +24,7 @@ function New-NightLabUser {
             throw "User exists but it is disabled. To avoid security risk, delete the existing disabled user first."
         }
         $expireDate= $User.PasswordExpires
-        if($expireDate.Length -eq null) {
+        if($expireDate -eq $null) {
             Write-Verbose "The user account is already PasswordNeverExpires."
         } else {
             try {
