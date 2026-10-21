@@ -41,6 +41,8 @@ function New-Subsystem {
     foreach($line in $lines) {
         if ($line -match '^\s*Subsystem\s+powershell\s') {
             return [PSCustomObject]@{
+                Step = "NewSubsystem"
+                RestartNeeded = $false
                 Changed = $false
                 Message = "Subsystem is already added to the config file, no need to update the config file or reset the SSH service."
             }
@@ -138,6 +140,8 @@ function New-Subsystem {
     }
 
     return [PSCustomObject]@{
+        Step = "NewSubsystem"
+        RestartNeeded = $false
         Changed = $Changed
         Message = "Subsystem line for PowerShell is added to sshd_config and the service is restarted."
     }

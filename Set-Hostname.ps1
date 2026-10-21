@@ -21,7 +21,7 @@ function Set-Hostname{
 
     Write-Verbose "Desired computer name is $($desiredComputerName)."
     if($futureComputerName -ne $desiredComputerName) {
-        if($currentComputerName -ne $desiredComputerName) {
+        if($currentComputerName -eq $futureComputerName) {
             Rename-Computer -NewName $desiredComputerName -ErrorAction Stop
             Write-Verbose "Computer name change is planned. After re-boot, it will change to $($desiredComputerName)."
             $Changed = $true

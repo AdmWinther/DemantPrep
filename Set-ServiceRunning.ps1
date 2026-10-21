@@ -56,6 +56,8 @@ function Set-ServiceRunning {
         throw "An error occurred while trying to set the $ServiceName service startup type to Automatic: $($_.Exception.Message)"
     }
     return [PSCustomObject]@{
+        Step = "Set-ServiceRunning"
+        RestartNeeded = $false
         Changed = $changed
         Message = "$ServiceName service is running and set to start automatically."
     }

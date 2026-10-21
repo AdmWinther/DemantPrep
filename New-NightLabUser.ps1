@@ -24,7 +24,7 @@ function New-NightLabUser {
             throw "User exists but it is disabled. To avoid security risk, delete the existing disabled user first."
         }
         $expireDate= $User.PasswordExpires
-        if($null -eq $expireDate) f{
+        if($null -eq $expireDate) { 
             Write-Verbose "The user account is already PasswordNeverExpires."
         } else {
             try {
