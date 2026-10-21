@@ -15,7 +15,7 @@ function Enable-ICMPv4Ping {
     $Changed = $false
 
     # Check if the firewall rule already exists
-    $existingRule = Get-NetFirewallRule -Name $RuleName -ErrorAction Stop
+    $existingRule = Get-NetFirewallRule -Name $RuleName -ErrorAction SilentlyContinue
 
     # Determine if the rule exists and create it if it does not
     if(@($existingRule).Count -gt 0) {
@@ -48,6 +48,7 @@ function Enable-ICMPv4Ping {
     }
     return [PSCustomObject]@{
         Step = 'Enable-ICMPv4Ping'
+        RestartNeeded = $false
         Changed = $Changed
         Message = "Firewall rule '$RuleName' is present and enabled."
     }
